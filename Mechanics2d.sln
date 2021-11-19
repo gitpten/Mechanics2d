@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31702.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mechanics2d", "Mechanics2d\Mechanics2d.csproj", "{2DD598CD-D49A-4533-A642-F6C6D770A275}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mechanics2dDemo", "Mechanics2dDemo\Mechanics2dDemo.csproj", "{B8C51DC0-58E8-474E-A3D4-F25465524BB2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2DD598CD-D49A-4533-A642-F6C6D770A275}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DD598CD-D49A-4533-A642-F6C6D770A275}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DD598CD-D49A-4533-A642-F6C6D770A275}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DD598CD-D49A-4533-A642-F6C6D770A275}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8C51DC0-58E8-474E-A3D4-F25465524BB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8C51DC0-58E8-474E-A3D4-F25465524BB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8C51DC0-58E8-474E-A3D4-F25465524BB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8C51DC0-58E8-474E-A3D4-F25465524BB2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A6218F41-1D30-46A0-8447-9E8535E18F7D}
+	EndGlobalSection
+EndGlobal
