@@ -44,26 +44,54 @@ namespace Mechanics2d
         {
             Vector p1_v = new Vector(p1);
             Vector p1_b_v = R - p1_v;
+            Vector p2_v = new Vector(p2);
+            Vector p2_b_v = R - p2_v;
             Vector p1p2_v = new Vector(p1, p2);
-            return p1_b_v.Projection(p1p2_v.Normal).SqAbs <= Radius * Radius;
+            
+            return p1_b_v.Projection(p1p2_v) * p2_b_v.Projection(p1p2_v) < 0 
+                && p1_b_v.Projection(p1p2_v.Normal).SqAbs <= Radius * Radius ;
+        }
+
+        public bool IsColliding(Coords p)
+        {            
+            return (new Vector(p) - R).SqAbs <= Radius * Radius;
         }
 
         public void Collide(Coords[] points)
         {
+            foreach (var p in points)
+            {
+                if (IsColliding(p))
+                {
+                    Collide(p);
+                    return;
+                }
+            }
             for (int i = 0; i < points.Length - 1; i++)
             {
-                Collide(points[i], points[i + 1]);
+                if(IsColliding (points[i], points[i + 1]))
+                    Collide(points[i], points[i + 1]);
             }
-            Collide(points[points.Length - 1], points[0]);
+            if(IsColliding(points[points.Length - 1], points[0])) Collide(points[points.Length - 1], points[0]);
         }
 
         public void Collide(Coords p1, Coords p2)
         {
-            if (IsColliding(p1, p2))
-            {
                 ShiftBack(p1, p2);
                 V = V.Mirror(new Vector(p1, p2));
-            }
+        }
+
+        public void Collide(Coords p)
+        {
+            ShiftBack(p);
+            V = V.Mirror(R - new Vector(p).Normal);
+        }
+
+        private void ShiftBack(Coords p)
+        {
+            var R_p = new Vector(p) - R;
+            var R_v = R_p.E * Radius;
+            R -= (R_v - R_p)*1.1;
         }
 
         public bool IsColliding(Ball b)
@@ -107,7 +135,7 @@ namespace Mechanics2d
             Vector p1p2_v = new Vector(p1, p2);
             Vector onWall = -p1_b_v.Projection(p1p2_v.Normal);
 
-            R += onWall - onWall.E * Radius;
+            R += onWall - onWall.E * Radius*1.1;
         }
 
     }

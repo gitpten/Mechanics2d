@@ -17,6 +17,8 @@ namespace Mechanics2dDemo
         List<Ball> balls = new List<Ball>();
         Graphics g;
         Coords[] edges;
+        Coords[] e2;
+        Point[] points, po2;
         public Form1()
         {
             InitializeComponent();
@@ -26,19 +28,43 @@ namespace Mechanics2dDemo
                 new Coords(0,0),
                 new Coords(panel1.Width / scale, 0),
                 new Coords(panel1.Width / scale, panel1.Height / scale),
+                new Coords(panel1.Width / 3 /scale, 5 * panel1.Height / 6 / scale),
                 new Coords(0, panel1.Height / scale)
             };
+
+            e2 = new Coords[]
+            {
+                new Coords(40  / scale,40  / scale),
+                new Coords(60  / scale, 40 / scale),
+                new Coords(60 / scale,80 / scale)
+            };
+
+            List<Point> pp = new List<Point>();
+            foreach (var c in edges)
+            {
+                pp.Add(new Point((int)(c.X * scale), (int)(c.Y * scale)));
+            }
+            points = pp.ToArray();
+
+            pp = new List<Point>();
+            foreach (var c in e2)
+            {
+                pp.Add(new Point((int)(c.X * scale), (int)(c.Y * scale)));
+            }
+            po2 = pp.ToArray();
         }
 
         public void UpdateBalls()
         {
             g.Clear(panel1.BackColor);
+            g.DrawPolygon(Pens.Red, points);
+            g.DrawPolygon(Pens.Red, po2);
             foreach (var b in balls)
             {
                 b.MoveWithCollision(balls, timer1.Interval / 1000.0,  new Vector(0, 0));
 
                 b.Collide(edges);
-
+                b.Collide(e2);
                 g.DrawEllipse(Pens.Red, (int)((b.R.X - b.Radius) * scale),
                     (int)((b.R.Y - b.Radius) * scale), (int)(b.Radius * 2 * scale)
                     , (int)(b.Radius * 2 * scale));
